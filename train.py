@@ -215,7 +215,7 @@ def draw_pyg(g_pyg, ax = None, filename = None):
   try:
     nx.draw(g_nx, with_labels = True, labels=node_labels, ax=ax, pos=pos)
   except:
-    nx.draw(g_nx, with_labels = True, labels=node_labels, pos=pos)
+    pass
   if filename is not None:
     plt.savefig(filename, dpi=300, bbox_inches='tight')
   return g_nx
