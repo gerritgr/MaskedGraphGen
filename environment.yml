@@ -14,7 +14,7 @@ dependencies:
 - python=3.9.13
 - pytorch::pytorch=1.11.0=py3.9_cuda11.3_cudnn8.2.0_0
 - pyg::pyg
-- scipy=1.8.1
+- scipy
 - ffmpeg=5.0.1
 - tqdm=4.64.0
 - networkx=2.5.1
