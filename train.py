@@ -35,7 +35,7 @@ PROJECT_NAME = "graph_unmasking_docker"
 def get_wand_api_key():
   api_key = ""
   # use   echo "your_api_key_here" > ~/api_key.txt   to write the api key to the home file dir    
-  if api_key is not "":
+  if api_key != "":
     return api_key
   home_dir = os.path.expanduser('~')
   file_path = os.path.join(home_dir, 'api_key.txt')
@@ -212,7 +212,10 @@ def draw_pyg(g_pyg, ax = None, filename = None):
 
   node_labels = {i: g_nx.nodes[i]['x'] for i in g_nx.nodes}
   pos = nx.spring_layout(g_nx, seed=1234)
-  nx.draw(g_nx, with_labels = True, labels=node_labels, ax=ax, pos=pos)
+  try:
+    nx.draw(g_nx, with_labels = True, labels=node_labels, ax=ax, pos=pos)
+  except:
+    nx.draw(g_nx, with_labels = True, labels=node_labels, pos=pos)
   if filename is not None:
     plt.savefig(filename, dpi=300, bbox_inches='tight')
   return g_nx
@@ -241,7 +244,10 @@ x = torch.tensor([[-1], [0], [1], [1]], dtype=torch.float).to(DEVICE)
 data = Data(x=x, edge_index=edge_index)
 
 g = torch_geometric.utils.to_networkx(data, to_undirected=True, node_attrs=['x'])
-nx.draw(g, pos=nx.spring_layout(g),  with_labels = True)
+try:
+  nx.draw(g, pos=nx.spring_layout(g),  with_labels = True)
+except:
+  pass
 
 data = lift_nx_to_pyg(g)
 data, data.x, data.edge_index
@@ -865,6 +871,7 @@ def start_agent_envelope():
       return start_agent(config)
   except Exception:
     print(traceback.format_exc())
+    wandb.log({"error": str(traceback.format_exc())})
     wandb.log({"graph-unmasking/gen-loss": -1,  "epoch": -1, "graph-unmasking/loss": -1})
 
 os.environ["WANDB_MODE"] = "online" #"dryrun"
