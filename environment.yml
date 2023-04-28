@@ -24,6 +24,7 @@ dependencies:
 - jupyterlab=3.4.4
 - imageio
 - wandb
+- pyemd
 - pip:
   - absl-py==1.2.0
   - deepchem==2.5.0
