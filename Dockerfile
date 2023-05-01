@@ -24,7 +24,7 @@ RUN mkdir /main/home
 WORKDIR /main
 
 # load dataset
-# RUN git clone https://github.com/KarolisMart/SPECTRE.git
+RUN git clone https://github.com/KarolisMart/SPECTRE.git
 
 # RUN git clone https://github.com/gerritgr/nextaid.git
 
