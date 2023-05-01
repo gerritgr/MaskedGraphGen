@@ -55,9 +55,7 @@ ENV PATH=$CONDA_DIR/bin:$PATH
 
 
 # Install mamba
-RUN curl -sL https://github.com/mamba-org/mamba/releases/latest/download/mamba_linux_x86_64.tar.bz2 | tar xvj && \
-    ./mamba/install.sh && \
-    rm -rf ./mamba
+RUN conda install mamba -n base -c conda-forge
   
 # Install env
 RUN mamba env update -n base -f /main/environment.yml 
