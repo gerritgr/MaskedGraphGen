@@ -59,6 +59,8 @@ RUN wget \
     && echo PATH="/root/miniconda3/bin":$PATH >> .bashrc \
     && exec bash \
     && conda --version
+
+RUN conda install -c conda-forge mamba
     
 RUN mamba env update -n base -f /main/environment.yml 
 RUN mamba clean -ya
