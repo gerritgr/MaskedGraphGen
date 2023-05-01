@@ -42,14 +42,26 @@ RUN mkdir $HOME/.cache $HOME/.config \
 # Set up the Conda environment (using Miniforge)
 ENV PATH=$HOME/mambaforge/bin:$PATH
 COPY environment.yml /main/environment.yml
-RUN curl -sLo ~/mambaforge.sh https://github.com/conda-forge/miniforge/releases/download/4.12.0-2/Mambaforge-4.12.0-2-Linux-x86_64.sh \
-    && chmod +x ~/mambaforge.sh \
-    && ~/mambaforge.sh -b -p ~/mambaforge \
-    && rm ~/mambaforge.sh \
-    && mamba env update -n base -f /main/environment.yml \
-    #&& rm /main/environment.yml \
-    && mamba clean -ya
+#RUN curl -sLo ~/mambaforge.sh https://github.com/conda-forge/miniforge/releases/download/4.12.0-2/Mambaforge-4.12.0-2-Linux-x86_64.sh \
+#    && chmod +x ~/mambaforge.sh \
+#    && ~/mambaforge.sh -b -p ~/mambaforge \
+#    && rm ~/mambaforge.sh \
+#    && mamba env update -n base -f /main/environment.yml \
+#    #&& rm /main/environment.yml \
+#    && mamba clean -ya
+ 
+RUN wget \
+    https://repo.anaconda.com/miniconda/Miniconda3-latest-Linux-x86_64.sh \
+    && mkdir /root/.conda \
+    && bash Miniconda3-latest-Linux-x86_64.sh -b \
+    && rm -f Miniconda3-latest-Linux-x86_64.sh \
+    && echo PATH="/root/miniconda3/bin":$PATH >> .bashrc \
+    && exec bash \
+    && conda --version
     
+RUN mamba env update -n base -f /main/environment.yml 
+RUN mamba clean -ya
+ 
 # install jax
 #RUN pip install --upgrade "jax[cuda]" -f https://storage.googleapis.com/jax-releases/jax_cuda_releases.html  # should be don in env file
 
