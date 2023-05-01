@@ -2,8 +2,7 @@
 FROM nvidia/cuda:11.3.1-base-ubuntu20.04
 ARG username
 
-# load dataset
-RUN git clone https://github.com/KarolisMart/SPECTRE.git
+
 
 # Remove any third-party apt sources to avoid issues with expiring keys.
 RUN rm -f /etc/apt/sources.list.d/*.list
@@ -23,6 +22,9 @@ RUN apt-get update && apt-get install -y \
 RUN mkdir /main
 RUN mkdir /main/home
 WORKDIR /main
+
+# load dataset
+RUN git clone https://github.com/KarolisMart/SPECTRE.git
 
 # RUN git clone https://github.com/gerritgr/nextaid.git
 
