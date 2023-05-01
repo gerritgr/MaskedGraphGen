@@ -1,3 +1,5 @@
+git clone https://github.com/KarolisMart/SPECTRE.git
+
 cd /home/s9gtgros/MaskedGraphGen/
 jupyter nbconvert --to script --output train.py notebook.ipynb
 mv train.py.txt train.py
