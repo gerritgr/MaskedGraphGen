@@ -43,27 +43,23 @@ RUN mkdir $HOME/.cache $HOME/.config \
 # Set up the Conda environment (using Miniforge)
 ENV PATH=$HOME/mambaforge/bin:$PATH
 COPY environment.yml /main/environment.yml
-#RUN curl -sLo ~/mambaforge.sh https://github.com/conda-forge/miniforge/releases/download/4.12.0-2/Mambaforge-4.12.0-2-Linux-x86_64.sh \
-#    && chmod +x ~/mambaforge.sh \
-#    && ~/mambaforge.sh -b -p ~/mambaforge \
-#    && rm ~/mambaforge.sh \
-#    && mamba env update -n base -f /main/environment.yml \
-#    #&& rm /main/environment.yml \
-#    && mamba clean -ya
  
-RUN wget \
-    https://repo.anaconda.com/miniconda/Miniconda3-latest-Linux-x86_64.sh \
-    && mkdir /root/.conda \
-    && bash Miniconda3-latest-Linux-x86_64.sh -b \
-    && rm -f Miniconda3-latest-Linux-x86_64.sh \
-    && echo PATH="/root/miniconda3/bin":$PATH >> .bashrc \
-    && exec bash \
-    && conda --version
+ 
+# Install miniconda
+ENV CONDA_DIR /opt/conda
+RUN wget --quiet https://repo.anaconda.com/miniconda/Miniconda3-latest-Linux-x86_64.sh -O ~/miniconda.sh && \
+     /bin/bash ~/miniconda.sh -b -p /opt/conda
 
+# Put conda in path so we can use conda activate
+ENV PATH=$CONDA_DIR/bin:$PATH
+
+
+# Install mamba
 RUN curl -sL https://github.com/mamba-org/mamba/releases/latest/download/mamba_linux_x86_64.tar.bz2 | tar xvj && \
     ./mamba/install.sh && \
     rm -rf ./mamba
-    
+  
+# Install env
 RUN mamba env update -n base -f /main/environment.yml 
 RUN mamba clean -ya
  
