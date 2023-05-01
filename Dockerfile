@@ -60,7 +60,9 @@ RUN wget \
     && exec bash \
     && conda --version
 
-RUN conda install -c conda-forge mamba
+RUN curl -sL https://github.com/mamba-org/mamba/releases/latest/download/mamba_linux_x86_64.tar.bz2 | tar xvj && \
+    ./mamba/install.sh && \
+    rm -rf ./mamba
     
 RUN mamba env update -n base -f /main/environment.yml 
 RUN mamba clean -ya
