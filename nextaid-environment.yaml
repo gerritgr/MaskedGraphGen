@@ -1,4 +1,4 @@
-name: nextaid
+name: base
 channels:
   - pytorch
   - bioconda
