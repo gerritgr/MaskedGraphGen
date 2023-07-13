@@ -58,7 +58,8 @@ ENV PATH=$CONDA_DIR/bin:$PATH
 RUN conda install mamba=1.4.2 -n base -c conda-forge
   
 # Install env
-RUN mamba env update -n base -f /main/environment.yml 
+#RUN mamba env update -n base -f /main/environment.yml 
+RUN mamba env update -n base -f /main/nextaid-environment.yaml
 RUN mamba clean -ya
  
 # install jax
