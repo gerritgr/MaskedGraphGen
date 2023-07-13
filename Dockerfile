@@ -55,7 +55,7 @@ ENV PATH=$CONDA_DIR/bin:$PATH
 
 
 # Install mamba
-RUN conda install mamba=1.4.6 -n base -c conda-forge
+RUN conda install mamba=1.4.3 -n base -c conda-forge
   
 # Install env
 RUN mamba env update -n base -f /main/environment.yml 
