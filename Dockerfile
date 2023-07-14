@@ -59,7 +59,7 @@ ENV PATH=$CONDA_DIR/bin:$PATH
 RUN pip install mamba
   
 # Install env
-RUN conda env create -n base
+#RUN conda env create -n base
 RUN mamba env update -n base -f /main/environment.yml 
 #COPY nextaid-environment.yml /main/nextaid-environment.yml
 #RUN mamba env update -f /main/nextaid-environment.yml
