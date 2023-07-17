@@ -56,7 +56,7 @@ ENV PATH=$CONDA_DIR/bin:$PATH
 
 # Install mamba
 #RUN conda install mamba -n base -c conda-forge
-RUN conda install -n base --override-channels -c conda-forge mamba=1.4.3 'python_abi=*=*cp*'
+RUN conda install -n base --override-channels -c conda-forge mamba=1.4.2 'python_abi=*=*cp*'
   
 # Install env
 #RUN conda env create -n base
