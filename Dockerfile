@@ -61,9 +61,9 @@ RUN conda install -n base --override-channels -c conda-forge mamba=1.4.2 'python
 # Install env
 #RUN conda env create -n base
 #RUN mamba env update -n base -f /main/environment.yml 
-#RUN mamba env update -n base -f environment.yml
+RUN mamba env update -f environment.yml
 #COPY nextaid-environment.yml /main/nextaid-environment.yml
-RUN mamba env update -f nextaid-environment.yml
+#RUN mamba env update -f nextaid-environment.yml
 RUN mamba clean -ya
  
 # install jax
