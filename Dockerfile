@@ -6,7 +6,6 @@ ARG username
 
 
 # load dataset
-RUN rm -rf SPECTRE
-RUN git clone https://github.com/KarolisMart/SPECTRE.git
+RUN conda install -c conda-forge matplotlib --force-reinstall
 
 # RUN git clone https://github.com/gerritgr/nextaid.git
