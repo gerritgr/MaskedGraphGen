@@ -1,5 +1,5 @@
 
-FROM gerritgr/maskedgraphgen:latest
+FROM gerritgr/maskedgraphgen:2023-07-19--31-21
 ARG username
 
 
